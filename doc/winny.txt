@@ -1,0 +1,70 @@
+*winny.txt* window function niceties
+
+
+description             |winny-description|
+usage                   |winny-usage|
+installation            |winny-installation|
+configuration           |winny-configuration|
+
+===============================================================================
+DESCRIPTION                                                 *winny-description*
+
+The aim of this plugin is to make winow management in vim easier, for example,
+while it's easy to push a particular window to a border of the window, it's not
+easy to move a window a only a bit in a direction, sometimes rotating windows
+can solve the problem, but not always, as it doesn't accept to rotate a group
+if a container in it is split. A second problem this plugin aims to solve is
+that navigating more than a couple windows is not really efficient.
+
+This plugin introduces the following functions.
+ 
+ShowWindowNumbers()                                         *ShowWindowNumbers*
+
+Will use popups to display an ascii art representation of the windows ids on
+top of each of them
+
+JumpWindow()                                                       *JumpWindow*
+
+Will display the window numbrs uing ShowWindowNumbers and then wait for a key
+to be pressed, when the key is pressed, it will try to move the focus to the
+window with that id. Known limitation, it's not possible to reach an id > 9
+this way.
+
+SwapWindows([n])                                                  *SwapWindows*
+
+If an id is provided, the buffers of the current window will be swapped with
+the buffer of the window with that id, if no id is provided,
+ShowWindowNumbers() will be called and then similarily to JumpWindow it will
+wait for a key and try to swap the current buffer with the buffer of that
+window. The focus will follow the buffer to the target window.
+
+
+USAGE                                                             *winny-usage*
+
+While you can use the provided functions directly, it's advised to map keys to
+them, see the |winny-configuration| section.
+
+INSTALLATION                                               *winny-installation*
+
+Nothing special, use your favorite plugin manager to add `tshirtman/vim-winny`
+
+e.g with vim-plug add:
+
+Plug 'tshirtman/vim-winny'
+
+to your plug-list.
+
+CONFIGURATION                                             *winny-configuration*
+
+plug functions are provided to make it easy to bind to your desired keys, a
+suggested configuration (add to your vimrc or a plugin).
+
+" replace the very pedestrian <c-w><c-w>
+nnoremap <silent> <c-w><c-w> <Plug>WinnyJumpWindow
+
+" <c-w>s is taken, but <c-w>m for move is convenient
+nnoremap <silent> <c-w>m <Plug>WinnySwapWindows
+
+" <c-w>t is available, but makes less sense, this mapping is less important
+" though
+nnoremap <silent> <c-w>t <Plug>WinnyShowWindows
