@@ -18,13 +18,18 @@ the `ShowWindowNumbers` function.
 
 It then builds on this function to provide two commonly useful ones.
 
-JumpWindow() will display the window numbers and wait for you to hit a number
-key, then jump the focus to that window.
+JumpWindow(as_letters=v:null) will display the window numbers and wait for you
+to hit a number key, then jump the focus to that window. If as_letters is
+passed a different value from v:null, then instead of using the window id,
+letters are used, allowing to target up to 52 different windows (lowercase then
+uppercase).
 
-SwapWindows([n]) will behave similaily but will swap the buffers between the
-current window and the one you type the number of. It accepts an optional
-parameter, if passed, it will directly swap the current buffer with the one of
-the window with the passed id.
+SwapWindows([n], as_letters=v:null) will behave similaily but will swap the
+buffers between the current window and the one you type the number of. It
+accepts an optional parameter, if passed, it will directly swap the current
+buffer with the one of the window with the passed id. Similarily to JumpWindow,
+the second parameter allows using letters instead of numbers, to only pass the
+second paramater, the first one can be passed the default v:null value.
 
 
 ### Mappings
@@ -32,6 +37,14 @@ the window with the passed id.
 No mappings are created by default, but you can use the following suggested
 ones, or your own, to call the functions.
 
+
+```vim
+nnoremap <silent> <c-w><c-w> <Plug>WinnyJumpWindowLetter
+nnoremap <silent> <c-w>m <Plug>WinnySwapWindowsLetter
+nnoremap <silent> <c-w>t <Plug>WinnyShowWindows
+```
+
+or if you prefer numbers to letters
 
 ```vim
 nnoremap <silent> <c-w><c-w> <Plug>WinnyJumpWindow
@@ -45,9 +58,11 @@ If you see similarily useful fonctions to manage windows more efficiently, feel
 free to sugesest them, no promise on what's going to be accepted, but I'll
 certainly consider them.
 
-If you can think of a non-intrusive way of allowing Jump and Swap to act on
-windows ids > 9, i'm open to hearing about them in particular.
+### Misc
 
+ChatGPT was used to generate the initial version of the nmbers/letters ascii
+art, but they were touched up to suit the taste of the author a bit better.
+Contribution on making them more consistent and legible are also welcome.
 
 ### License
 
