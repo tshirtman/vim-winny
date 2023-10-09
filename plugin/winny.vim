@@ -615,5 +615,7 @@ tmap <Plug>WinnySwapWindowsLetter :call SwapWindows(v:null, 1)<cr>
 
 " suggested mappings
 " nnoremap <silent> <c-w><c-w> <Plug>WinnyJumpWindowLetter
-" nnoremap <silent> <c-w>m <Plug>WinnySwapWindows
+" nnoremap <c-w>m <Plug>WinnySwapWindowsLetter
 " nnoremap <silent> <c-w>t <Plug>WinnyShowWindows
+" tnoremap <c-w><c-w> <c-w><Plug>WinnyJumpWindowLetter
+" tnoremap <c-w>m <c-w><Plug>WinnySwapWindowsLetter
